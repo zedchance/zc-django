@@ -25,7 +25,7 @@
         {% else %}
             <div class="clearfix">
                 {% if e.link %}
-                <a href="{{ e.link }}" class="text-decoration-none">
+                <a href="{{ e.link }}" class="text-decoration-none float-start">
                     <h5>{{ e }}</h5>
                 </a>
                 {% else %}
@@ -37,7 +37,7 @@
                 {% if e.image %}
                 <img src="{{ e.image.url }}" class="img-thumbnail float-end" width="10%">
                 {% endif %}
-                <p>
+                <p class="m-0">
                     {{ e.get_description_as_md }}
                 </p>
             </div>
