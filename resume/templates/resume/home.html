@@ -23,15 +23,21 @@
                 <small class="text-muted">{{ e.description }}</small>
             </h5>
         {% else %}
-            <div class="clearfix">
-                {% if e.link %}
-                <a href="{{ e.link }}" class="text-decoration-none float-start">
-                    <h5>{{ e }}</h5>
-                </a>
-                {% else %}
-                <h5 class="float-start">{{ e }}</h5>
-                {% endif %}
-                <h5 class="float-end">{{ e.range_text }}</h5>
+            <div class="container-lg">
+                <div class="row">
+                    <div class="col-auto me-auto p-0">
+                        {% if e.link %}
+                            <a href="{{ e.link }}" class="text-decoration-none">
+                                <h5>{{ e }}</h5>
+                            </a>
+                        {% else %}
+                            <h5>{{ e }}</h5>
+                        {% endif %}
+                    </div>
+                    <div class="col-auto p-0">
+                        <h5 class="text-muted">{{ e.range_text }}</h5>
+                    </div>
+                </div>
             </div>
             <div class="clearfix">
                 {% if e.image %}
