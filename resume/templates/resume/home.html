@@ -1,0 +1,47 @@
+{% extends 'resume/base.html' %}
+
+{% block title%}Zed Chance{% endblock %}
+
+{% block content %}
+{% for s in sections %}
+    <h1 class="display-6">{{ s }}</h1>
+    {% if s.description %}
+        <p>
+            {{ s.get_description_as_md }}
+        </p>
+    {% endif %}
+    {% for e in s.get_entries_by_weight %}
+        {% if e.is_short_entry %}
+            <h5>
+                {% if e.link %}
+                <a href="{{ e.link }}" class="text-decoration-none">
+                    {{ e }}
+                </a>
+                {% else %}
+                    {{ e }}
+                {% endif %}
+                <small class="text-muted">{{ e.description }}</small>
+            </h5>
+        {% else %}
+            <div class="clearfix">
+                {% if e.link %}
+                <a href="{{ e.link }}" class="text-decoration-none">
+                    <h5>{{ e }}</h5>
+                </a>
+                {% else %}
+                <h5 class="float-start">{{ e }}</h5>
+                {% endif %}
+                <h5 class="float-end">{{ e.range_text }}</h5>
+            </div>
+            <div class="clearfix">
+                {% if e.image %}
+                <img src="{{ e.image.url }}" class="img-thumbnail float-end" width="10%">
+                {% endif %}
+                <p>
+                    {{ e.get_description_as_md }}
+                </p>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% endblock %}
