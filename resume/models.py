@@ -1,4 +1,6 @@
 from django.db import models
+from django.shortcuts import redirect
+from django.utils.safestring import mark_safe
 
 from .md import markdownify
 
@@ -14,6 +16,17 @@ class Entry(models.Model):
 
     def get_description_as_md(self):
         return markdownify(self.description)
+
+    def get_sections(self):
+        return list(Section.objects.filter(entries=self))
+
+    def get_links_to_sections(self):
+        sections = self.get_sections()
+        links = ['<a href="{}">{}</a>'.format(
+            redirect('admin:resume_section_change', i.id).url,
+            i.title,
+        ) for i in sections]
+        return mark_safe(', '.join(links))
 
     def __str__(self):
         return self.title
@@ -31,7 +44,14 @@ class Section(models.Model):
     def get_description_as_md(self):
         return markdownify(self.description)
 
+    def get_links_to_entries(self):
+        entries = self.get_entries_by_weight()
+        links = ['<code>{}   <a href="{}">{}</a></code>'.format(
+            i.entry_weight,
+            redirect('admin:resume_entry_change', i.id).url,
+            i.title,
+        ) for i in entries]
+        return mark_safe('<br>'.join(links))
+
     def __str__(self):
         return self.title
-
-

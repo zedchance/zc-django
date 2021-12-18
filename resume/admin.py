@@ -1,29 +1,22 @@
 from django.contrib import admin
-from django.db import models
-from django import forms
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 
 from .models import Section, Entry
 
 
-class EntryInline(admin.StackedInline):
-    model = Section.entries.through
-    extra = 1
-
-
 class EntryAdmin(ImportExportModelAdmin, ImportExportActionModelAdmin):
-    list_display = ('title', )
+    list_display = ('title', 'entry_weight', 'get_links_to_sections', )
+    search_fields = ('title', 'id', )
+    fields = ('get_links_to_sections', 'title', 'range_text', 'description', 'entry_weight', 'link', 'image',
+              'is_short_entry', )
+    readonly_fields = ('get_links_to_sections', )
 
 
 class SectionAdmin(ImportExportModelAdmin, ImportExportActionModelAdmin):
     list_display = ('title', 'section_weight', )
-    filter_horizontal = ('entries', )
-    # formfield_overrides = {
-    #     models.ManyToManyField: {
-    #         'widget': forms.CheckboxSelectMultiple
-    #     },
-    # }
-    # inlines = [EntryInline]
+    fields = ('title', 'description', 'section_weight', 'entries', 'get_links_to_entries', )
+    filter_vertical = ('entries', )
+    readonly_fields = ('get_links_to_entries', )
 
 
 admin.site.register(Section, SectionAdmin)
