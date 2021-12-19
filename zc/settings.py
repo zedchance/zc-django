@@ -26,7 +26,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['zedchance.herokuapp.com', 'zedchance.com', 'www.zedchance.com', '127.0.0.1']
-
+CSRF_TRUSTED_ORIGINS = ['https://*.zedchance.com', 'https://*.127.0.0.1']
 
 # Application definition
 
