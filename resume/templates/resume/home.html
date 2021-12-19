@@ -3,6 +3,7 @@
 {% block title%}Zed Chance{% endblock %}
 
 {% block content %}
+{% include 'resume/_banner.html' %}
 {% for s in sections %}
     <h1 class="display-6">{{ s }}</h1>
     {% if s.description %}
