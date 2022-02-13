@@ -21,3 +21,4 @@ class SectionAdmin(ImportExportModelAdmin, ImportExportActionModelAdmin):
 
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Entry, EntryAdmin)
+admin.site.site_header = 'Zed Chance'

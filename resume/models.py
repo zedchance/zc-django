@@ -14,6 +14,9 @@ class Entry(models.Model):
     image = models.ImageField(blank=True, null=True)
     is_short_entry = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name_plural = 'Entries'
+
     def get_description_as_md(self):
         return markdownify(self.description)
 
