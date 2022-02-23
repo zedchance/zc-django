@@ -25,7 +25,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['zedchance.herokuapp.com', 'zedchance.com', 'www.zedchance.com', '127.0.0.1']
+ALLOWED_HOSTS = ['zedchance.com', 'www.zedchance.com', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://*.zedchance.com', 'https://*.127.0.0.1']
 
 # Application definition
@@ -121,7 +121,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
