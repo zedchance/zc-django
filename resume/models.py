@@ -58,3 +58,7 @@ class Section(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ResumeFile(models.Model):
+    file = models.FileField(upload_to='uploads/', null=True, blank=True)

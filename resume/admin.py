@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin, ImportExportActionModelAdmin
 
-from .models import Section, Entry
+from .models import Section, Entry, ResumeFile
 
 
 class EntryAdmin(ImportExportModelAdmin, ImportExportActionModelAdmin):
@@ -19,6 +19,11 @@ class SectionAdmin(ImportExportModelAdmin, ImportExportActionModelAdmin):
     readonly_fields = ('get_links_to_entries', )
 
 
+class ResumeFileAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Entry, EntryAdmin)
+admin.site.register(ResumeFile, ResumeFileAdmin)
 admin.site.site_header = 'Zed Chance'
