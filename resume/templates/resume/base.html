@@ -24,9 +24,11 @@
                         <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
                     </li>
                     {% endif %}
+                    {% if resume_file %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ resume_file.file.url }}">Resume</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/zedchance">GitHub</a>
                     </li>
